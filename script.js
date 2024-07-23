@@ -1,8 +1,8 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('registration-form');
   const feedbackDiv = document.getElementById('form-feedback');
 
-  const validateForm = (event) => {
+  form.addEventListener('submit', function (event) {
       event.preventDefault();
 
       const username = document.getElementById('username').value.trim();
@@ -12,19 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
       let isValid = true;
       let messages = [];
 
-      // Username validation
+      // Username Validation
       if (username.length < 3) {
           isValid = false;
           messages.push('Username must be at least 3 characters long.');
       }
 
-      // Email validation
+      // Email Validation
       if (!email.includes('@') || !email.includes('.')) {
           isValid = false;
           messages.push('Please enter a valid email address.');
       }
 
-      // Password validation
+      // Password Validation
       if (password.length < 8) {
           isValid = false;
           messages.push('Password must be at least 8 characters long.');
@@ -39,7 +39,5 @@ document.addEventListener('DOMContentLoaded', () => {
           feedbackDiv.innerHTML = messages.join('<br>');
           feedbackDiv.style.color = '#dc3545';
       }
-  };
-
-  form.addEventListener('submit', validateForm);
+  });
 });
